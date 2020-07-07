@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Electric water heater" />
+		<Option pch_mode="2" />
+		<Option compiler="sdcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Electric water heater" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="sdcc" />
+				<Compiler>
+					<Add option="--debug" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Electric water heater" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="sdcc" />
+				<Compiler>
+					<Add option="--opt-code-size" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="ADC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ADC.h" />
+		<Unit filename="Cooling_element.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Cooling_element.h" />
+		<Unit filename="Display.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Display.h" />
+		<Unit filename="EEPROM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="EEPROM.h" />
+		<Unit filename="Heating_element.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Heating_element.h" />
+		<Unit filename="Led.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Led.h" />
+		<Unit filename="Main.h" />
+		<Unit filename="Port.h" />
+		<Unit filename="SSD.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SSD.h" />
+		<Unit filename="SW.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SW.h" />
+		<Unit filename="TWI.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TWI.h" />
+		<Unit filename="TempSensor.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="TempSensor.h" />
+		<Unit filename="Timer.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Timer.h" />
+		<Unit filename="WH.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="WH.h" />
+		<Unit filename="WaterHeater.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

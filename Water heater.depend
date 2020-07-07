@@ -1,0 +1,136 @@
+# depslib dependency file v1.0
+1593554011 source:c:\users\dell\documents\c++\water heater\water heater\display.c
+	"Main.h"
+	"SSD.h"
+	"Timer.h"
+	"Display.h"
+	"SW.h"
+	"Led.h"
+
+1593582220 c:\users\dell\documents\c++\water heater\water heater\main.h
+	<pic16f877a.h>
+	<stdio.h>
+	<stdlib.h>
+
+1593583293 c:\users\dell\documents\c++\water heater\water heater\ssd.h
+	"Main.h"
+	"Port.h"
+
+1593635214 c:\users\dell\documents\c++\water heater\water heater\port.h
+	"Main.h"
+
+1585585564 c:\users\dell\documents\c++\water heater\water heater\timer.h
+	"Main.h"
+
+1585585565 c:\users\dell\documents\c++\water heater\water heater\display.h
+
+1593418517 c:\users\dell\documents\c++\water heater\water heater\sw.h
+
+1593572480 c:\users\dell\documents\c++\water heater\water heater\led.h
+
+1593489587 source:c:\users\dell\documents\c++\water heater\water heater\keypad.c
+	"Main.h"
+	"Port.h"
+	"Keypad.h"
+	<string.h>
+
+1593489436 c:\users\dell\documents\c++\water heater\water heater\keypad.h
+	"Keypad_config.h"
+
+1593512150 c:\users\dell\documents\c++\water heater\water heater\keypad_config.h
+
+1585587352 source:c:\users\dell\documents\c++\water heater\water heater\led.c
+	"Main.h"
+	"Port.h"
+	"Led.h"
+
+1593635214 source:c:\users\dell\documents\c++\water heater\water heater\main.c
+	<stdlib.h>
+	"Main.h"
+	"Port.h"
+	"Keypad.h"
+	"Led.h"
+	"SSD.h"
+	"SW.h"
+	"Cooling_element.h"
+	"Heating_element.h"
+	"Timer_delay.h"
+	<string.h>
+	"ADC.h"
+	"LCD.h"
+
+1593583293 source:c:\users\dell\documents\c++\water heater\water heater\ssd.c
+	"Main.h"
+	"Port.h"
+	"Timer.h"
+	"SSD.h"
+
+1593572255 source:c:\users\dell\documents\c++\water heater\water heater\sw.c
+	"Main.h"
+	"Port.h"
+	"Timer.h"
+	"SW.h"
+
+1593554011 source:c:\users\dell\documents\c++\water heater\water heater\timer.c
+	"Main.h"
+	"Timer.h"
+	"SW.h"
+	"Display.h"
+	"SSD.h"
+
+1586796662 source:c:\users\dell\documents\c++\water heater\water heater\timer_delay.c
+	"Timer_delay.h"
+	"Main.h"
+
+1586405624 c:\users\dell\documents\c++\water heater\water heater\timer_delay.h
+	"Main.h"
+
+1593576899 source:c:\users\dell\documents\c++\water heater\water heater\cooling_element.c
+	"Main.h"
+	"Port.h"
+	"Cooling_element.h"
+
+1593577506 c:\users\dell\documents\c++\water heater\water heater\cooling_element.h
+
+1593635283 source:c:\users\dell\documents\c++\water heater\water heater\tempsensor.c
+	"TempSensor.h"
+
+1593554011 c:\users\dell\documents\c++\water heater\water heater\tempsensor.h
+
+1593554080 source:c:\users\dell\documents\c++\water heater\water heater\wh.c
+	"Main.h"
+	"Port.h"
+	"WH.h"
+
+1593554011 c:\users\dell\documents\c++\water heater\water heater\wh.h
+
+1500330922 source:c:\users\dell\documents\c++\water heater\water heater\adc.c
+	"Main.h"
+	"Port.h"
+	"ADC.h"
+
+1500394980 c:\users\dell\documents\c++\water heater\water heater\adc.h
+	"Main.h"
+
+1593577671 source:c:\users\dell\documents\c++\water heater\water heater\heating_element.c
+	"Main.h"
+	"Port.h"
+	"Heating_element.h"
+
+1593577506 c:\users\dell\documents\c++\water heater\water heater\heating_element.h
+
+1576916330 source:c:\users\dell\documents\c++\water heater\water heater\lcd.c
+	"Main.h"
+	"Port.h"
+	"Util.h"
+	"LCD.h"
+
+1499442022 c:\users\dell\documents\c++\water heater\water heater\util.h
+	"Main.h"
+
+1534595398 c:\users\dell\documents\c++\water heater\water heater\lcd.h
+
+1534588148 source:c:\users\dell\documents\c++\water heater\water heater\util.c
+	"Main.h"
+	"Util.h"
+

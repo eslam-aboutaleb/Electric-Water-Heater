@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1500330922 source:c:\users\dell\documents\c++\water heater\electric water heater\adc.c
+	"Main.h"
+	"Port.h"
+	"ADC.h"
+
+1593837714 c:\users\dell\documents\c++\water heater\electric water heater\main.h
+	<pic16f877a.h>
+	<stdio.h>
+	<stdlib.h>
+
+1593745238 c:\users\dell\documents\c++\water heater\electric water heater\port.h
+	"Main.h"
+
+1500394980 c:\users\dell\documents\c++\water heater\electric water heater\adc.h
+	"Main.h"
+

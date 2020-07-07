@@ -1,0 +1,2449 @@
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  1
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00001 ;--------------------------------------------------------
+                      00002 ; File Created by SDCC : free open source ANSI-C Compiler
+                      00003 ; Version 3.5.0 #9253 (Jun 20 2015) (MINGW32)
+                      00004 ; This file was generated Sat Jul 04 14:18:02 2020
+                      00005 ;--------------------------------------------------------
+                      00006 ; PIC port for the 14-bit core
+                      00007 ;--------------------------------------------------------
+                      00008         .file   "LCD.c"
+                      00009         list    p=16f877a
+                      00010         radix dec
+                      00011         include "p16f877a.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Aug 07 2014
+                      00005 ;  MPASM PIC16F877A processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2014 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      00567         LIST
+                      00012 ;--------------------------------------------------------
+                      00013 ; external declarations
+                      00014 ;--------------------------------------------------------
+  0000                00015         extern  __print_format
+  0000                00016         extern  _printf_small
+  0000                00017         extern  _printf
+  0000                00018         extern  _vprintf
+  0000                00019         extern  _sprintf
+  0000                00020         extern  _vsprintf
+  0000                00021         extern  _puts
+  0000                00022         extern  _gets
+  0000                00023         extern  _getchar
+  0000                00024         extern  _putchar
+  0000                00025         extern  _calloc
+  0000                00026         extern  _malloc
+  0000                00027         extern  _realloc
+  0000                00028         extern  _free
+  0000                00029         extern  _abs
+  0000                00030         extern  _labs
+  0000                00031         extern  _atof
+  0000                00032         extern  _atoi
+  0000                00033         extern  _atol
+  0000                00034         extern  __uitoa
+  0000                00035         extern  __itoa
+  0000                00036         extern  __ultoa
+  0000                00037         extern  __ltoa
+  0000                00038         extern  _rand
+  0000                00039         extern  _srand
+  0000                00040         extern  _Delay_MS
+  0000                00041         extern  _STATUSbits
+  0000                00042         extern  _PORTAbits
+  0000                00043         extern  _PORTBbits
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  2
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00044         extern  _PORTCbits
+  0000                00045         extern  _PORTDbits
+  0000                00046         extern  _PORTEbits
+  0000                00047         extern  _INTCONbits
+  0000                00048         extern  _PIR1bits
+  0000                00049         extern  _PIR2bits
+  0000                00050         extern  _T1CONbits
+  0000                00051         extern  _T2CONbits
+  0000                00052         extern  _SSPCONbits
+  0000                00053         extern  _CCP1CONbits
+  0000                00054         extern  _RCSTAbits
+  0000                00055         extern  _CCP2CONbits
+  0000                00056         extern  _ADCON0bits
+  0000                00057         extern  _OPTION_REGbits
+  0000                00058         extern  _TRISAbits
+  0000                00059         extern  _TRISBbits
+  0000                00060         extern  _TRISCbits
+  0000                00061         extern  _TRISDbits
+  0000                00062         extern  _TRISEbits
+  0000                00063         extern  _PIE1bits
+  0000                00064         extern  _PIE2bits
+  0000                00065         extern  _PCONbits
+  0000                00066         extern  _SSPCON2bits
+  0000                00067         extern  _SSPSTATbits
+  0000                00068         extern  _TXSTAbits
+  0000                00069         extern  _CMCONbits
+  0000                00070         extern  _CVRCONbits
+  0000                00071         extern  _ADCON1bits
+  0000                00072         extern  _EECON1bits
+  0000                00073         extern  _INDF
+  0000                00074         extern  _TMR0
+  0000                00075         extern  _PCL
+  0000                00076         extern  _STATUS
+  0000                00077         extern  _FSR
+  0000                00078         extern  _PORTA
+  0000                00079         extern  _PORTB
+  0000                00080         extern  _PORTC
+  0000                00081         extern  _PORTD
+  0000                00082         extern  _PORTE
+  0000                00083         extern  _PCLATH
+  0000                00084         extern  _INTCON
+  0000                00085         extern  _PIR1
+  0000                00086         extern  _PIR2
+  0000                00087         extern  _TMR1
+  0000                00088         extern  _TMR1L
+  0000                00089         extern  _TMR1H
+  0000                00090         extern  _T1CON
+  0000                00091         extern  _TMR2
+  0000                00092         extern  _T2CON
+  0000                00093         extern  _SSPBUF
+  0000                00094         extern  _SSPCON
+  0000                00095         extern  _CCPR1
+  0000                00096         extern  _CCPR1L
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  3
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00097         extern  _CCPR1H
+  0000                00098         extern  _CCP1CON
+  0000                00099         extern  _RCSTA
+  0000                00100         extern  _TXREG
+  0000                00101         extern  _RCREG
+  0000                00102         extern  _CCPR2
+  0000                00103         extern  _CCPR2L
+  0000                00104         extern  _CCPR2H
+  0000                00105         extern  _CCP2CON
+  0000                00106         extern  _ADRESH
+  0000                00107         extern  _ADCON0
+  0000                00108         extern  _OPTION_REG
+  0000                00109         extern  _TRISA
+  0000                00110         extern  _TRISB
+  0000                00111         extern  _TRISC
+  0000                00112         extern  _TRISD
+  0000                00113         extern  _TRISE
+  0000                00114         extern  _PIE1
+  0000                00115         extern  _PIE2
+  0000                00116         extern  _PCON
+  0000                00117         extern  _SSPCON2
+  0000                00118         extern  _PR2
+  0000                00119         extern  _SSPADD
+  0000                00120         extern  _SSPSTAT
+  0000                00121         extern  _TXSTA
+  0000                00122         extern  _SPBRG
+  0000                00123         extern  _CMCON
+  0000                00124         extern  _CVRCON
+  0000                00125         extern  _ADRESL
+  0000                00126         extern  _ADCON1
+  0000                00127         extern  _EEDATA
+  0000                00128         extern  _EEADR
+  0000                00129         extern  _EEDATH
+  0000                00130         extern  _EEADRH
+  0000                00131         extern  _EECON1
+  0000                00132         extern  _EECON2
+  0000                00133         extern  __gptrget1
+  0000                00134         extern  __mulchar
+                      00135 
+  0000                00136         extern PSAVE
+  0000                00137         extern SSAVE
+  0000                00138         extern WSAVE
+  0000                00139         extern STK12
+  0000                00140         extern STK11
+  0000                00141         extern STK10
+  0000                00142         extern STK09
+  0000                00143         extern STK08
+  0000                00144         extern STK07
+  0000                00145         extern STK06
+  0000                00146         extern STK05
+  0000                00147         extern STK04
+  0000                00148         extern STK03
+  0000                00149         extern STK02
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  4
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+  0000                00150         extern STK01
+  0000                00151         extern STK00
+                      00152 ;--------------------------------------------------------
+                      00153 ; global declarations
+                      00154 ;--------------------------------------------------------
+  0000                00155         global  _LCD_SendString
+  0000                00156         global  _LCD_Clear
+  0000                00157         global  _LCD_SendChar
+  0000                00158         global  _LCD_Init
+                      00159 
+                      00160 ;--------------------------------------------------------
+                      00161 ; global definitions
+                      00162 ;--------------------------------------------------------
+                      00163 ;--------------------------------------------------------
+                      00164 ; absolute symbol definitions
+                      00165 ;--------------------------------------------------------
+                      00166 ;--------------------------------------------------------
+                      00167 ; compiler-defined variables
+                      00168 ;--------------------------------------------------------
+                      00169 UDL_LCD_0       udata
+0000                  00170 r0x1013 res     1
+0001                  00171 r0x1007 res     1
+0002                  00172 r0x1008 res     1
+0003                  00173 r0x100A res     1
+0004                  00174 r0x100D res     1
+0005                  00175 r0x100C res     1
+0006                  00176 r0x100B res     1
+0007                  00177 r0x100E res     1
+0008                  00178 r0x100F res     1
+0009                  00179 r0x1010 res     1
+000A                  00180 r0x1011 res     1
+000B                  00181 r0x1012 res     1
+000C                  00182 r0x1000 res     1
+000D                  00183 r0x1001 res     1
+000E                  00184 r0x1005 res     1
+000F                  00185 r0x1006 res     1
+0010                  00186 r0x1002 res     1
+0011                  00187 r0x1003 res     1
+0012                  00188 r0x1004 res     1
+                      00189 ;--------------------------------------------------------
+                      00190 ; initialized data
+                      00191 ;--------------------------------------------------------
+                      00192 ;--------------------------------------------------------
+                      00193 ; overlayable items in internal ram 
+                      00194 ;--------------------------------------------------------
+                      00195 ;       udata_ovr
+                      00196 ;--------------------------------------------------------
+                      00197 ; code
+                      00198 ;--------------------------------------------------------
+                      00199 code_LCD        code
+                      00200 ;***
+                      00201 ;  pBlock Stats: dbName = C
+                      00202 ;***
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  5
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00203 ;entry:  _LCD_GoTo      ;Function start
+                      00204 ; 2 exit points
+                      00205 ;has an exit
+                      00206 ;functions called:
+                      00207 ;   __mulchar
+                      00208 ;   _LCD_SendCommand
+                      00209 ;   __mulchar
+                      00210 ;   _LCD_SendCommand
+                      00211 ;4 compiler assigned registers:
+                      00212 ;   r0x1002
+                      00213 ;   STK00
+                      00214 ;   r0x1003
+                      00215 ;   r0x1004
+                      00216 ;; Starting pCode block
+                      00217 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00218 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00219 ;; ***  genLabel  2763
+                      00220 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00221 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      00222 ;; ***  genFunction  2342 curr label offset=34previous max_key=0 
+0000                  00223 _LCD_GoTo       ;Function start
+                      00224 ; 2 exit points
+                      00225 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00226 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      00227 ;; ***  genReceive  7359
+                      00228 ;;      694 register type nRegs=1
+                      00229 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00230 ;; ***  assignResultValue  1909
+                      00231 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x1059, size=1, right -=-, size=0
+                      00232 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00233 ;;      1109 rIdx = r0x1059 
+                      00234         .line   139; "LCD.c"    static void LCD_GoTo(tByte line, tByte column)
+0000   ???? ????      00235         BANKSEL r0x1002
+0002   00??           00236         MOVWF   r0x1002
+                      00237 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00238 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      00239 ;; ***  genReceive  7359
+                      00240 ;;      694 register type nRegs=1
+                      00241 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00242 ;; ***  assignResultValue  1909
+                      00243 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x105A, size=1, right -=-, size=0
+                      00244 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      00245 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+0003   08??           00246         MOVF    STK00,W
+                      00247 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00248 ;;      1109 rIdx = r0x105A 
+0004   00??           00249         MOVWF   r0x1003
+                      00250 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00251 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2878:genMult *{*
+                      00252 ;; ***  genMult  2880
+                      00253 ;;      694 register type nRegs=1
+                      00254 ;;      694 register type nRegs=1
+                      00255 ;;      line = 2886 result AOP_REG=r0x105B, size=1, left AOP_REG=r0x1059, size=1, right AOP_LIT=0x40, si
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  6
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                            ze=1
+                      00256 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2816:genMultOneByte *{*
+                      00257 ;; ***  genMultOneByte  2818
+                      00258 ;;      line = 2819 result AOP_REG=r0x105B, size=1, left AOP_REG=r0x1059, size=1, right AOP_LIT=0x40, si
+                            ze=1
+                      00259 ;;      line = 2820, signs: result AOP_REG=u, left AOP_REG=u, right AOP_LIT=u
+                      00260 ;; ***  mov2w  1381  offset=0
+                      00261 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1384:mov2w
+                      00262         .line   143; "LCD.c"    address = (line * LCD_LINE_2_ADDRESS) + column;
+0005   3040           00263         MOVLW   0x40
+                      00264 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2840:genMultOneByte
+                      00265 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+0006   00??           00266         MOVWF   STK00
+                      00267 ;; ***  mov2w  1381  offset=0
+                      00268 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00269 ;;      1109 rIdx = r0x1059 
+0007   08??           00270         MOVF    r0x1002,W
+                      00271 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1433:call_libraryfunc
+0008   ???? ????      00272         PAGESEL __mulchar
+                      00273 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1435:call_libraryfunc
+000A   2???           00274         CALL    __mulchar
+                      00275 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1437:call_libraryfunc
+000B   ???? ????      00276         PAGESEL $
+                      00277 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00278 ;;      1109 rIdx = r0x105B 
+000D   ???? ????      00279         BANKSEL r0x1004
+000F   00??           00280         MOVWF   r0x1004
+                      00281 ;; ***  addSign  861
+                      00282 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:862:addSign *{*
+                      00283 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00284 ;; ***  genPlus  611
+                      00285 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:612:genPlus *{*
+                      00286 ;;      694 register type nRegs=1
+                      00287 ;;      694 register type nRegs=1
+                      00288 ;;      694 register type nRegs=1
+                      00289 ;;      line = 618 result AOP_REG=r0x1059, size=1, left AOP_REG=r0x105B, size=1, right AOP_REG=r0x105A, 
+                            size=1
+                      00290 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:142:genPlusIncr *{*
+                      00291 ;; ***  genPlusIncr  144
+                      00292 ;;      result AOP_REG, left AOP_REG, right AOP_REG
+                      00293 ;; ***  genPlus  717
+                      00294 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:726:genPlus
+                      00295 ;;      1109 rIdx = r0x105A 
+0010   08??           00296         MOVF    r0x1003,W
+                      00297 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:735:genPlus
+                      00298 ;;      1109 rIdx = r0x105B 
+0011   07??           00299         ADDWF   r0x1004,W
+                      00300 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:736:genPlus
+                      00301 ;;      1109 rIdx = r0x1059 
+0012   00??           00302         MOVWF   r0x1002
+                      00303 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00304 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00305 ;; ***  genOr  4221
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  7
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00306 ;;      694 register type nRegs=1
+                      00307 ;;      694 register type nRegs=1
+                      00308 ;;      line = 4227 result AOP_REG=r0x1059, size=1, left AOP_REG=r0x1059, size=1, right AOP_LIT=0x80, si
+                            ze=1
+                      00309 ;;      line = 4253 result AOP_REG=r0x1059, size=1, left AOP_REG=r0x1059, size=1, right AOP_LIT=0x80, si
+                            ze=1
+                      00310 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4404:genOr
+                      00311         .line   146; "LCD.c"    LCD_SendCommand(LCD_SET_DDRAM_ADDRESS|address);
+0013   17??           00312         BSF     r0x1002,7
+                      00313 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00314 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00315 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      00316 ;; ***  genCall  2088
+                      00317 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      00318 ;; ***  saveRegisters  1803
+                      00319 ;;      694 register type nRegs=1
+                      00320 ;;      694 register type nRegs=1
+                      00321 ;;      2135 left AOP_REG
+                      00322 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      00323 ;; ***  mov2w  1381  offset=0
+                      00324 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00325 ;;      1109 rIdx = r0x1059 
+0014   08??           00326         MOVF    r0x1002,W
+                      00327 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0015   2???           00328         CALL    _LCD_SendCommand
+                      00329 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      00330 ;; ***  unsaveRegisters  1847
+                      00331 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00332 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00333 ;; ***  genLabel  2763
+                      00334 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00335 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      00336 ;; ***  genEndFunction  2530
+0016   0008           00337         RETURN  
+                      00338 ; exit point of _LCD_GoTo
+                      00339 
+                      00340 ;***
+                      00341 ;  pBlock Stats: dbName = C
+                      00342 ;***
+                      00343 ;entry:  _LCD_SendData  ;Function start
+                      00344 ; 2 exit points
+                      00345 ;has an exit
+                      00346 ;2 compiler assigned registers:
+                      00347 ;   r0x1005
+                      00348 ;   r0x1006
+                      00349 ;; Starting pCode block
+                      00350 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00351 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00352 ;; ***  genLabel  2763
+                      00353 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00354 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      00355 ;; ***  genFunction  2342 curr label offset=30previous max_key=0 
+0017                  00356 _LCD_SendData   ;Function start
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  8
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00357 ; 2 exit points
+                      00358 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00359 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      00360 ;; ***  genReceive  7359
+                      00361 ;;      694 register type nRegs=1
+                      00362 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00363 ;; ***  assignResultValue  1909
+                      00364 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x1057, size=1, right -=-, size=0
+                      00365 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00366 ;;      1109 rIdx = r0x1057 
+                      00367         .line   128; "LCD.c"    static void LCD_SendData(tByte character)
+0017   ???? ????      00368         BANKSEL r0x1005
+0019   00??           00369         MOVWF   r0x1005
+                      00370 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00371 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00372 ;; ***  genCast  7121
+                      00373 ;; ***  aopForSym 315
+                      00374 ;;      327 sym->rname = _PORTE, size = 1
+                      00375 ;;      694 register type nRegs=1
+                      00376 ;;      line = 7129 result AOP_REG=r0x1058, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00377 ;; ***  genCast  7253
+                      00378 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00379 ;;      1009
+                      00380 ;;      1028  _PORTE   offset=0
+                      00381         .line   131; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 1);
+001A   ???? ????      00382         BANKSEL _PORTE
+001C   08??           00383         MOVF    _PORTE,W
+                      00384 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00385 ;;      1109 rIdx = r0x1058 
+001D   ???? ????      00386         BANKSEL r0x1006
+001F   00??           00387         MOVWF   r0x1006
+                      00388 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00389 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00390 ;; ***  genAnd  3920
+                      00391 ;;      694 register type nRegs=1
+                      00392 ;;      694 register type nRegs=1
+                      00393 ;;      line = 3955 result AOP_REG=r0x1058, size=1, left AOP_REG=r0x1058, size=1, right AOP_LIT=0xfd, si
+                            ze=1
+                      00394 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4122:genAnd
+0020   10??           00395         BCF     r0x1006,1
+                      00396 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00397 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00398 ;; ***  genOr  4221
+                      00399 ;;      694 register type nRegs=1
+                      00400 ;; ***  aopForSym 315
+                      00401 ;;      327 sym->rname = _PORTE, size = 1
+                      00402 ;;      line = 4227 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1058, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00403 ;;      line = 4253 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1058, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00404 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4470:genOr
+0021   3002           00405         MOVLW   0x02
+                      00406 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4471:genOr
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE  9
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00407 ;;      1109 rIdx = r0x1058 
+0022   04??           00408         IORWF   r0x1006,W
+                      00409 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4472:genOr
+                      00410 ;;      1009
+                      00411 ;;      1028  _PORTE   offset=0
+0023   ???? ????      00412         BANKSEL _PORTE
+0025   00??           00413         MOVWF   _PORTE
+                      00414 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00415 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6927:genAssign *{*
+                      00416 ;; ***  genAssign  6928
+                      00417 ;;      694 register type nRegs=1
+                      00418 ;; ***  aopForSym 315
+                      00419 ;;      327 sym->rname = _PORTD, size = 1
+                      00420 ;;      line = 6937 result AOP_DIR=_PORTD, size=1, left -=-, size=0, right AOP_REG=r0x1057, size=1
+                      00421 ;; ***  genAssign  7023
+                      00422 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      00423 ;; ***  mov2w  1381  offset=0
+                      00424 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00425 ;;      1109 rIdx = r0x1057 
+                      00426         .line   132; "LCD.c"    GPIO_WritePort(LCD_DATA_PORT_DR, character);
+0026   ???? ????      00427         BANKSEL r0x1005
+0028   08??           00428         MOVF    r0x1005,W
+                      00429 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7050:genAssign
+                      00430 ;;      1009
+                      00431 ;;      1028  _PORTD   offset=0
+0029   ???? ????      00432         BANKSEL _PORTD
+002B   00??           00433         MOVWF   _PORTD
+                      00434 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00435 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00436 ;; ***  genCast  7121
+                      00437 ;; ***  aopForSym 315
+                      00438 ;;      327 sym->rname = _PORTE, size = 1
+                      00439 ;;      694 register type nRegs=1
+                      00440 ;;      line = 7129 result AOP_REG=r0x1057, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00441 ;; ***  genCast  7253
+                      00442 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00443 ;;      1009
+                      00444 ;;      1028  _PORTE   offset=0
+                      00445         .line   133; "LCD.c"    GPIO_WritePortPin(LCD_RS_DR, LCD_RS_PIN,1);
+002C   08??           00446         MOVF    _PORTE,W
+                      00447 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00448 ;;      1109 rIdx = r0x1057 
+002D   ???? ????      00449         BANKSEL r0x1005
+002F   00??           00450         MOVWF   r0x1005
+                      00451 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00452 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00453 ;; ***  genAnd  3920
+                      00454 ;;      694 register type nRegs=1
+                      00455 ;;      694 register type nRegs=1
+                      00456 ;;      line = 3955 result AOP_REG=r0x1057, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0xfb, si
+                            ze=1
+                      00457 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4122:genAnd
+0030   11??           00458         BCF     r0x1005,2
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 10
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00459 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00460 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00461 ;; ***  genOr  4221
+                      00462 ;;      694 register type nRegs=1
+                      00463 ;; ***  aopForSym 315
+                      00464 ;;      327 sym->rname = _PORTE, size = 1
+                      00465 ;;      line = 4227 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0x04, siz
+                            e=1
+                      00466 ;;      line = 4253 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0x04, siz
+                            e=1
+                      00467 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4470:genOr
+0031   3004           00468         MOVLW   0x04
+                      00469 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4471:genOr
+                      00470 ;;      1109 rIdx = r0x1057 
+0032   04??           00471         IORWF   r0x1005,W
+                      00472 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4472:genOr
+                      00473 ;;      1009
+                      00474 ;;      1028  _PORTE   offset=0
+0033   ???? ????      00475         BANKSEL _PORTE
+0035   00??           00476         MOVWF   _PORTE
+                      00477 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00478 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00479 ;; ***  genCast  7121
+                      00480 ;; ***  aopForSym 315
+                      00481 ;;      327 sym->rname = _PORTE, size = 1
+                      00482 ;;      694 register type nRegs=1
+                      00483 ;;      line = 7129 result AOP_REG=r0x1057, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00484 ;; ***  genCast  7253
+                      00485 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00486 ;;      1009
+                      00487 ;;      1028  _PORTE   offset=0
+                      00488         .line   134; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 0);
+0036   08??           00489         MOVF    _PORTE,W
+                      00490 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00491 ;;      1109 rIdx = r0x1057 
+0037   ???? ????      00492         BANKSEL r0x1005
+0039   00??           00493         MOVWF   r0x1005
+                      00494 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00495 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00496 ;; ***  genAnd  3920
+                      00497 ;;      694 register type nRegs=1
+                      00498 ;; ***  aopForSym 315
+                      00499 ;;      327 sym->rname = _PORTE, size = 1
+                      00500 ;;      line = 3955 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0xfd, siz
+                            e=1
+                      00501 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+003A   30FD           00502         MOVLW   0xfd
+                      00503 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      00504 ;;      1109 rIdx = r0x1057 
+003B   05??           00505         ANDWF   r0x1005,W
+                      00506 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      00507 ;;      1009
+                      00508 ;;      1028  _PORTE   offset=0
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 11
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+003C   ???? ????      00509         BANKSEL _PORTE
+003E   00??           00510         MOVWF   _PORTE
+                      00511 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00512 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00513 ;; ***  genCast  7121
+                      00514 ;; ***  aopForSym 315
+                      00515 ;;      327 sym->rname = _PORTE, size = 1
+                      00516 ;;      694 register type nRegs=1
+                      00517 ;;      line = 7129 result AOP_REG=r0x1057, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00518 ;; ***  genCast  7253
+                      00519 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00520 ;;      1009
+                      00521 ;;      1028  _PORTE   offset=0
+                      00522         .line   135; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 1);
+003F   08??           00523         MOVF    _PORTE,W
+                      00524 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00525 ;;      1109 rIdx = r0x1057 
+0040   ???? ????      00526         BANKSEL r0x1005
+0042   00??           00527         MOVWF   r0x1005
+                      00528 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00529 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00530 ;; ***  genAnd  3920
+                      00531 ;;      694 register type nRegs=1
+                      00532 ;;      694 register type nRegs=1
+                      00533 ;;      line = 3955 result AOP_REG=r0x1057, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0xfd, si
+                            ze=1
+                      00534 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4122:genAnd
+0043   10??           00535         BCF     r0x1005,1
+                      00536 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00537 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00538 ;; ***  genOr  4221
+                      00539 ;;      694 register type nRegs=1
+                      00540 ;; ***  aopForSym 315
+                      00541 ;;      327 sym->rname = _PORTE, size = 1
+                      00542 ;;      line = 4227 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00543 ;;      line = 4253 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1057, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00544 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4470:genOr
+0044   3002           00545         MOVLW   0x02
+                      00546 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4471:genOr
+                      00547 ;;      1109 rIdx = r0x1057 
+0045   04??           00548         IORWF   r0x1005,W
+                      00549 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4472:genOr
+                      00550 ;;      1009
+                      00551 ;;      1028  _PORTE   offset=0
+0046   ???? ????      00552         BANKSEL _PORTE
+0048   00??           00553         MOVWF   _PORTE
+                      00554 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00555 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00556 ;; ***  genLabel  2763
+                      00557 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00558 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 12
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00559 ;; ***  genEndFunction  2530
+0049   0008           00560         RETURN  
+                      00561 ; exit point of _LCD_SendData
+                      00562 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      00563 
+                      00564 ;***
+                      00565 ;  pBlock Stats: dbName = C
+                      00566 ;***
+                      00567 ;entry:  _LCD_SendCommand       ;Function start
+                      00568 ; 2 exit points
+                      00569 ;has an exit
+                      00570 ;2 compiler assigned registers:
+                      00571 ;   r0x1000
+                      00572 ;   r0x1001
+                      00573 ;; Starting pCode block
+                      00574 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00575 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00576 ;; ***  genLabel  2763
+                      00577 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00578 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      00579 ;; ***  genFunction  2342 curr label offset=16previous max_key=10 
+004A                  00580 _LCD_SendCommand        ;Function start
+                      00581 ; 2 exit points
+                      00582 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00583 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      00584 ;; ***  genReceive  7359
+                      00585 ;;      694 register type nRegs=1
+                      00586 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00587 ;; ***  assignResultValue  1909
+                      00588 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x1055, size=1, right -=-, size=0
+                      00589 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00590 ;;      1109 rIdx = r0x1055 
+                      00591         .line   117; "LCD.c"    static void LCD_SendCommand(tByte command)
+004A   ???? ????      00592         BANKSEL r0x1000
+004C   00??           00593         MOVWF   r0x1000
+                      00594 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00595 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00596 ;; ***  genCast  7121
+                      00597 ;; ***  aopForSym 315
+                      00598 ;;      327 sym->rname = _PORTE, size = 1
+                      00599 ;;      694 register type nRegs=1
+                      00600 ;;      line = 7129 result AOP_REG=r0x1056, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00601 ;; ***  genCast  7253
+                      00602 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00603 ;;      1009
+                      00604 ;;      1028  _PORTE   offset=0
+                      00605         .line   120; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 1);
+004D   ???? ????      00606         BANKSEL _PORTE
+004F   08??           00607         MOVF    _PORTE,W
+                      00608 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00609 ;;      1109 rIdx = r0x1056 
+0050   ???? ????      00610         BANKSEL r0x1001
+0052   00??           00611         MOVWF   r0x1001
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 13
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00612 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00613 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00614 ;; ***  genAnd  3920
+                      00615 ;;      694 register type nRegs=1
+                      00616 ;;      694 register type nRegs=1
+                      00617 ;;      line = 3955 result AOP_REG=r0x1056, size=1, left AOP_REG=r0x1056, size=1, right AOP_LIT=0xfd, si
+                            ze=1
+                      00618 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4122:genAnd
+0053   10??           00619         BCF     r0x1001,1
+                      00620 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00621 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00622 ;; ***  genOr  4221
+                      00623 ;;      694 register type nRegs=1
+                      00624 ;; ***  aopForSym 315
+                      00625 ;;      327 sym->rname = _PORTE, size = 1
+                      00626 ;;      line = 4227 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1056, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00627 ;;      line = 4253 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1056, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00628 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4470:genOr
+0054   3002           00629         MOVLW   0x02
+                      00630 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4471:genOr
+                      00631 ;;      1109 rIdx = r0x1056 
+0055   04??           00632         IORWF   r0x1001,W
+                      00633 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4472:genOr
+                      00634 ;;      1009
+                      00635 ;;      1028  _PORTE   offset=0
+0056   ???? ????      00636         BANKSEL _PORTE
+0058   00??           00637         MOVWF   _PORTE
+                      00638 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00639 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6927:genAssign *{*
+                      00640 ;; ***  genAssign  6928
+                      00641 ;;      694 register type nRegs=1
+                      00642 ;; ***  aopForSym 315
+                      00643 ;;      327 sym->rname = _PORTD, size = 1
+                      00644 ;;      line = 6937 result AOP_DIR=_PORTD, size=1, left -=-, size=0, right AOP_REG=r0x1055, size=1
+                      00645 ;; ***  genAssign  7023
+                      00646 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      00647 ;; ***  mov2w  1381  offset=0
+                      00648 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00649 ;;      1109 rIdx = r0x1055 
+                      00650         .line   121; "LCD.c"    GPIO_WritePort(LCD_DATA_PORT_DR, command);
+0059   ???? ????      00651         BANKSEL r0x1000
+005B   08??           00652         MOVF    r0x1000,W
+                      00653 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7050:genAssign
+                      00654 ;;      1009
+                      00655 ;;      1028  _PORTD   offset=0
+005C   ???? ????      00656         BANKSEL _PORTD
+005E   00??           00657         MOVWF   _PORTD
+                      00658 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00659 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00660 ;; ***  genCast  7121
+                      00661 ;; ***  aopForSym 315
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 14
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00662 ;;      327 sym->rname = _PORTE, size = 1
+                      00663 ;;      694 register type nRegs=1
+                      00664 ;;      line = 7129 result AOP_REG=r0x1055, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00665 ;; ***  genCast  7253
+                      00666 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00667 ;;      1009
+                      00668 ;;      1028  _PORTE   offset=0
+                      00669         .line   122; "LCD.c"    GPIO_WritePortPin(LCD_RS_DR, LCD_RS_PIN, 0);
+005F   08??           00670         MOVF    _PORTE,W
+                      00671 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00672 ;;      1109 rIdx = r0x1055 
+0060   ???? ????      00673         BANKSEL r0x1000
+0062   00??           00674         MOVWF   r0x1000
+                      00675 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00676 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00677 ;; ***  genAnd  3920
+                      00678 ;;      694 register type nRegs=1
+                      00679 ;; ***  aopForSym 315
+                      00680 ;;      327 sym->rname = _PORTE, size = 1
+                      00681 ;;      line = 3955 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1055, size=1, right AOP_LIT=0xfb, siz
+                            e=1
+                      00682 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+0063   30FB           00683         MOVLW   0xfb
+                      00684 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      00685 ;;      1109 rIdx = r0x1055 
+0064   05??           00686         ANDWF   r0x1000,W
+                      00687 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      00688 ;;      1009
+                      00689 ;;      1028  _PORTE   offset=0
+0065   ???? ????      00690         BANKSEL _PORTE
+0067   00??           00691         MOVWF   _PORTE
+                      00692 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00693 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00694 ;; ***  genCast  7121
+                      00695 ;; ***  aopForSym 315
+                      00696 ;;      327 sym->rname = _PORTE, size = 1
+                      00697 ;;      694 register type nRegs=1
+                      00698 ;;      line = 7129 result AOP_REG=r0x1055, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00699 ;; ***  genCast  7253
+                      00700 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00701 ;;      1009
+                      00702 ;;      1028  _PORTE   offset=0
+                      00703         .line   123; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 0);
+0068   08??           00704         MOVF    _PORTE,W
+                      00705 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00706 ;;      1109 rIdx = r0x1055 
+0069   ???? ????      00707         BANKSEL r0x1000
+006B   00??           00708         MOVWF   r0x1000
+                      00709 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00710 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00711 ;; ***  genAnd  3920
+                      00712 ;;      694 register type nRegs=1
+                      00713 ;; ***  aopForSym 315
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 15
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00714 ;;      327 sym->rname = _PORTE, size = 1
+                      00715 ;;      line = 3955 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1055, size=1, right AOP_LIT=0xfd, siz
+                            e=1
+                      00716 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+006C   30FD           00717         MOVLW   0xfd
+                      00718 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      00719 ;;      1109 rIdx = r0x1055 
+006D   05??           00720         ANDWF   r0x1000,W
+                      00721 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      00722 ;;      1009
+                      00723 ;;      1028  _PORTE   offset=0
+006E   ???? ????      00724         BANKSEL _PORTE
+0070   00??           00725         MOVWF   _PORTE
+                      00726 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00727 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      00728 ;; ***  genCast  7121
+                      00729 ;; ***  aopForSym 315
+                      00730 ;;      327 sym->rname = _PORTE, size = 1
+                      00731 ;;      694 register type nRegs=1
+                      00732 ;;      line = 7129 result AOP_REG=r0x1055, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      00733 ;; ***  genCast  7253
+                      00734 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      00735 ;;      1009
+                      00736 ;;      1028  _PORTE   offset=0
+                      00737         .line   124; "LCD.c"    GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 1);
+0071   08??           00738         MOVF    _PORTE,W
+                      00739 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      00740 ;;      1109 rIdx = r0x1055 
+0072   ???? ????      00741         BANKSEL r0x1000
+0074   00??           00742         MOVWF   r0x1000
+                      00743 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00744 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      00745 ;; ***  genAnd  3920
+                      00746 ;;      694 register type nRegs=1
+                      00747 ;;      694 register type nRegs=1
+                      00748 ;;      line = 3955 result AOP_REG=r0x1055, size=1, left AOP_REG=r0x1055, size=1, right AOP_LIT=0xfd, si
+                            ze=1
+                      00749 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4122:genAnd
+0075   10??           00750         BCF     r0x1000,1
+                      00751 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00752 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4220:genOr *{*
+                      00753 ;; ***  genOr  4221
+                      00754 ;;      694 register type nRegs=1
+                      00755 ;; ***  aopForSym 315
+                      00756 ;;      327 sym->rname = _PORTE, size = 1
+                      00757 ;;      line = 4227 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1055, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00758 ;;      line = 4253 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1055, size=1, right AOP_LIT=0x02, siz
+                            e=1
+                      00759 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4470:genOr
+0076   3002           00760         MOVLW   0x02
+                      00761 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4471:genOr
+                      00762 ;;      1109 rIdx = r0x1055 
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 16
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+0077   04??           00763         IORWF   r0x1000,W
+                      00764 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4472:genOr
+                      00765 ;;      1009
+                      00766 ;;      1028  _PORTE   offset=0
+0078   ???? ????      00767         BANKSEL _PORTE
+007A   00??           00768         MOVWF   _PORTE
+                      00769 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00770 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00771 ;; ***  genLabel  2763
+                      00772 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00773 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      00774 ;; ***  genEndFunction  2530
+007B   0008           00775         RETURN  
+                      00776 ; exit point of _LCD_SendCommand
+                      00777 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      00778 
+                      00779 ;***
+                      00780 ;  pBlock Stats: dbName = C
+                      00781 ;***
+                      00782 ;entry:  _LCD_SendString        ;Function start
+                      00783 ; 2 exit points
+                      00784 ;has an exit
+                      00785 ;functions called:
+                      00786 ;   _LCD_SendCommand
+                      00787 ;   __gptrget1
+                      00788 ;   _LCD_SendChar
+                      00789 ;   _LCD_SendCommand
+                      00790 ;   __gptrget1
+                      00791 ;   _LCD_SendChar
+                      00792 ;12 compiler assigned registers:
+                      00793 ;   r0x100A
+                      00794 ;   STK00
+                      00795 ;   r0x100B
+                      00796 ;   STK01
+                      00797 ;   r0x100C
+                      00798 ;   STK02
+                      00799 ;   r0x100D
+                      00800 ;   r0x100E
+                      00801 ;   r0x100F
+                      00802 ;   r0x1010
+                      00803 ;   r0x1011
+                      00804 ;   r0x1012
+                      00805 ;; Starting pCode block
+                      00806 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00807 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00808 ;; ***  genLabel  2763
+                      00809 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00810 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      00811 ;; ***  genFunction  2342 curr label offset=12previous max_key=0 
+007C                  00812 _LCD_SendString ;Function start
+                      00813 ; 2 exit points
+                      00814 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00815 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 17
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00816 ;; ***  genReceive  7359
+                      00817 ;;      694 register type nRegs=1
+                      00818 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00819 ;; ***  assignResultValue  1909
+                      00820 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x104C, size=1, right -=-, size=0
+                      00821 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00822 ;;      1109 rIdx = r0x104C 
+                      00823         .line   97; "LCD.c"     void LCD_SendString(tByte line,tByte * str)
+007C   ???? ????      00824         BANKSEL r0x100A
+007E   00??           00825         MOVWF   r0x100A
+                      00826 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00827 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      00828 ;; ***  genReceive  7359
+                      00829 ;;      694 register type nRegs=3
+                      00830 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      00831 ;; ***  assignResultValue  1909
+                      00832 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x104D, size=3, right -=-, size=0
+                      00833 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      00834 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+007F   08??           00835         MOVF    STK00,W
+                      00836 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00837 ;;      1109 rIdx = r0x104F 
+0080   00??           00838         MOVWF   r0x100B
+                      00839 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      00840 ;; ***  popRegFromIdx,1042  , rIdx=0x7e
+0081   08??           00841         MOVF    STK01,W
+                      00842 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00843 ;;      1109 rIdx = r0x104E 
+0082   00??           00844         MOVWF   r0x100C
+                      00845 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      00846 ;; ***  popRegFromIdx,1042  , rIdx=0x7d
+0083   08??           00847         MOVF    STK02,W
+                      00848 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00849 ;;      1109 rIdx = r0x104D 
+0084   00??           00850         MOVWF   r0x100D
+                      00851 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00852 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6759:genIfx *{*
+                      00853 ;; ***  genIfx  6760
+                      00854 ;;      694 register type nRegs=1
+                      00855 ;; ***  pic14_toBoolean  1515
+                      00856 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1522:pic14_toBoolean
+                      00857         .line   103; "LCD.c"    if (line == LCD_LINE_1)
+0085   08??           00858         MOVF    r0x100A,W
+0086   1D03           00859         BTFSS   STATUS,2
+                      00860 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6809:genIfx
+                      00861 ;; ***  popGetLabel  key=10, label offset 16
+0087   2???           00862         GOTO    _00126_DS_
+                      00863 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00864 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00865 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      00866 ;; ***  genCall  2088
+                      00867 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      00868 ;; ***  saveRegisters  1803
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 18
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00869 ;;      2135 left AOP_LIT
+                      00870 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      00871 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      00872         .line   105; "LCD.c"    LCD_SendCommand(LCD_CLR);
+0088   3001           00873         MOVLW   0x01
+                      00874 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0089   2???           00875         CALL    _LCD_SendCommand
+                      00876 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      00877 ;; ***  unsaveRegisters  1847
+                      00878 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00879 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00880 ;; ***  genLabel  2763
+                      00881 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00882 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6927:genAssign *{*
+                      00883 ;; ***  genAssign  6928
+                      00884 ;;      694 register type nRegs=1
+                      00885 ;;      line = 6937 result AOP_REG=r0x1050, size=1, left -=-, size=0, right AOP_LIT=0x00, size=1
+                      00886 ;; ***  genAssign  7023
+                      00887 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7035:genAssign
+                      00888 ;;      1109 rIdx = r0x1050 
+008A                  00889 _00126_DS_
+                      00890         .line   109; "LCD.c"    while (str[i] != '\0')
+008A   ???? ????      00891         BANKSEL r0x100E
+008C   01??           00892         CLRF    r0x100E
+                      00893 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00894 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      00895 ;; ***  genLabel  2763
+                      00896 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00897 ;; ***  genPlus  611
+                      00898 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:612:genPlus *{*
+                      00899 ;;      694 register type nRegs=3
+                      00900 ;;      694 register type nRegs=1
+                      00901 ;;      694 register type nRegs=3
+                      00902 ;;      line = 618 result AOP_REG=r0x1051, size=3, left AOP_REG=r0x104D, size=3, right AOP_REG=r0x1050, 
+                            size=1
+                      00903 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:142:genPlusIncr *{*
+                      00904 ;; ***  genPlusIncr  144
+                      00905 ;;      result AOP_REG, left AOP_REG, right AOP_REG
+                      00906 ;; ***  genPlus  717
+                      00907 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:726:genPlus
+                      00908 ;;      1109 rIdx = r0x1050 
+008D                  00909 _00119_DS_
+008D   ???? ????      00910         BANKSEL r0x100E
+008F   08??           00911         MOVF    r0x100E,W
+                      00912 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:735:genPlus
+                      00913 ;;      1109 rIdx = r0x104D 
+0090   07??           00914         ADDWF   r0x100D,W
+                      00915 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:736:genPlus
+                      00916 ;;      1109 rIdx = r0x1051 
+0091   00??           00917         MOVWF   r0x100F
+                      00918 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:799:genPlus
+                      00919 ;;      1109 rIdx = r0x104E 
+0092   08??           00920         MOVF    r0x100C,W
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 19
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00921 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:800:genPlus
+0093   1803           00922         BTFSC   STATUS,0
+                      00923 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:801:genPlus
+0094   3E01           00924         ADDLW   0x01
+                      00925 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:802:genPlus
+                      00926 ;;      1109 rIdx = r0x1052 
+0095   00??           00927         MOVWF   r0x1010
+                      00928 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:799:genPlus
+                      00929 ;;      1109 rIdx = r0x104F 
+0096   08??           00930         MOVF    r0x100B,W
+                      00931 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:800:genPlus
+0097   1803           00932         BTFSC   STATUS,0
+                      00933 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:801:genPlus
+0098   3E01           00934         ADDLW   0x01
+                      00935 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:802:genPlus
+                      00936 ;;      1109 rIdx = r0x1053 
+0099   00??           00937         MOVWF   r0x1011
+                      00938 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00939 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6162:genPointerGet *{*
+                      00940 ;; ***  genPointerGet  6163
+                      00941 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6051:genGenPointerGet *{*
+                      00942 ;; ***  genGenPointerGet  6052
+                      00943 ;;      694 register type nRegs=3
+                      00944 ;;      694 register type nRegs=1
+                      00945 ;;      line = 6057 result AOP_REG=r0x1054, size=1, left AOP_REG=r0x1051, size=3, right -=-, size=0
+                      00946 ;; ***  mov2w  1381  offset=0
+                      00947 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00948 ;;      1109 rIdx = r0x1051 
+009A   08??           00949         MOVF    r0x100F,W
+                      00950 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6076:genGenPointerGet
+                      00951 ;; ***  popRegFromIdx,1042  , rIdx=0x7e
+009B   00??           00952         MOVWF   STK01
+                      00953 ;; ***  mov2w  1381  offset=1
+                      00954 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00955 ;;      1109 rIdx = r0x1052 
+009C   08??           00956         MOVF    r0x1010,W
+                      00957 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6078:genGenPointerGet
+                      00958 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+009D   00??           00959         MOVWF   STK00
+                      00960 ;; ***  mov2w  1381  offset=2
+                      00961 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      00962 ;;      1109 rIdx = r0x1053 
+009E   08??           00963         MOVF    r0x1011,W
+                      00964 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1433:call_libraryfunc
+009F   ???? ????      00965         PAGESEL __gptrget1
+                      00966 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1435:call_libraryfunc
+00A1   2???           00967         CALL    __gptrget1
+                      00968 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1437:call_libraryfunc
+00A2   ???? ????      00969         PAGESEL $
+                      00970 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      00971 ;;      1109 rIdx = r0x1054 
+00A4   ???? ????      00972         BANKSEL r0x1012
+00A6   00??           00973         MOVWF   r0x1012
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 20
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      00974 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00975 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6759:genIfx *{*
+                      00976 ;; ***  genIfx  6760
+                      00977 ;;      694 register type nRegs=1
+                      00978 ;; ***  pic14_toBoolean  1515
+                      00979 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1522:pic14_toBoolean
+00A7   08??           00980         MOVF    r0x1012,W
+00A8   1903           00981         BTFSC   STATUS,2
+                      00982 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6814:genIfx
+                      00983 ;; ***  popGetLabel  key=6, label offset 16
+00A9   2???           00984         GOTO    _00122_DS_
+                      00985 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00986 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00987 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00988 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      00989 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      00990 ;; ***  genCall  2088
+                      00991 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      00992 ;; ***  saveRegisters  1803
+                      00993 ;;      694 register type nRegs=1
+                      00994 ;;      694 register type nRegs=1
+                      00995 ;;      694 register type nRegs=1
+                      00996 ;;      694 register type nRegs=1
+                      00997 ;;      2135 left AOP_REG
+                      00998 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      00999 ;; ***  mov2w  1381  offset=0
+                      01000 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      01001 ;;      1109 rIdx = r0x1050 
+                      01002         .line   111; "LCD.c"    LCD_SendChar(str[i], line, i);
+00AA   08??           01003         MOVF    r0x100E,W
+                      01004 ;;      694 register type nRegs=1
+                      01005 ;;      2135 left AOP_REG
+                      01006 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2143:genCall
+                      01007 ;; ***  popRegFromIdx,1042  , rIdx=0x7e
+00AB   00??           01008         MOVWF   STK01
+                      01009 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01010 ;; ***  mov2w  1381  offset=0
+                      01011 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      01012 ;;      1109 rIdx = r0x104C 
+00AC   08??           01013         MOVF    r0x100A,W
+                      01014 ;;      694 register type nRegs=1
+                      01015 ;;      2135 left AOP_REG
+                      01016 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2143:genCall
+                      01017 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+00AD   00??           01018         MOVWF   STK00
+                      01019 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01020 ;; ***  mov2w  1381  offset=0
+                      01021 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      01022 ;;      1109 rIdx = r0x1054 
+00AE   08??           01023         MOVF    r0x1012,W
+                      01024 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00AF   2???           01025         CALL    _LCD_SendChar
+                      01026 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 21
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01027 ;; ***  unsaveRegisters  1847
+                      01028 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01029 ;; ***  genPlus  611
+                      01030 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:612:genPlus *{*
+                      01031 ;;      694 register type nRegs=1
+                      01032 ;;      575
+                      01033 ;;      line = 618 result AOP_REG=r0x1050, size=1, left AOP_REG=r0x1050, size=1, right AOP_LIT=0x01, siz
+                            e=1
+                      01034 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:142:genPlusIncr *{*
+                      01035 ;; ***  genPlusIncr  144
+                      01036 ;;      result AOP_REG, left AOP_REG, right AOP_LIT
+                      01037 ;;      genPlusIncr  156
+                      01038 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/genarith.c:168:genPlusIncr
+                      01039 ;;      1109 rIdx = r0x1050 
+                      01040         .line   112; "LCD.c"    i++;
+00B0   ???? ????      01041         BANKSEL r0x100E
+00B2   0A??           01042         INCF    r0x100E,F
+                      01043 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01044 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2778:genGoto *{*
+                      01045 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2780:genGoto
+                      01046 ;; ***  popGetLabel  key=3, label offset 16
+00B3   2???           01047         GOTO    _00119_DS_
+                      01048 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01049 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01050 ;; ***  genLabel  2763
+                      01051 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01052 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      01053 ;; ***  genEndFunction  2530
+00B4                  01054 _00122_DS_
+00B4   0008           01055         RETURN  
+                      01056 ; exit point of _LCD_SendString
+                      01057 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      01058 
+                      01059 ;***
+                      01060 ;  pBlock Stats: dbName = C
+                      01061 ;***
+                      01062 ;entry:  _LCD_Clear     ;Function start
+                      01063 ; 2 exit points
+                      01064 ;has an exit
+                      01065 ;functions called:
+                      01066 ;   _LCD_SendCommand
+                      01067 ;   _LCD_SendCommand
+                      01068 ;; Starting pCode block
+                      01069 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01070 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01071 ;; ***  genLabel  2763
+                      01072 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01073 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      01074 ;; ***  genFunction  2342 curr label offset=8previous max_key=0 
+00B5                  01075 _LCD_Clear      ;Function start
+                      01076 ; 2 exit points
+                      01077 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01078 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 22
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01079 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01080 ;; ***  genCall  2088
+                      01081 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01082 ;; ***  saveRegisters  1803
+                      01083 ;;      2135 left AOP_LIT
+                      01084 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01085 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01086         .line   94; "LCD.c"     LCD_SendCommand(LCD_CLR);
+00B5   3001           01087         MOVLW   0x01
+                      01088 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00B6   2???           01089         CALL    _LCD_SendCommand
+                      01090 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01091 ;; ***  unsaveRegisters  1847
+                      01092 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01093 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01094 ;; ***  genLabel  2763
+                      01095 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01096 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      01097 ;; ***  genEndFunction  2530
+00B7   0008           01098         RETURN  
+                      01099 ; exit point of _LCD_Clear
+                      01100 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      01101 
+                      01102 ;***
+                      01103 ;  pBlock Stats: dbName = C
+                      01104 ;***
+                      01105 ;entry:  _LCD_SendChar  ;Function start
+                      01106 ; 2 exit points
+                      01107 ;has an exit
+                      01108 ;functions called:
+                      01109 ;   _LCD_GoTo
+                      01110 ;   _LCD_SendData
+                      01111 ;   _LCD_GoTo
+                      01112 ;   _LCD_SendData
+                      01113 ;5 compiler assigned registers:
+                      01114 ;   r0x1007
+                      01115 ;   STK00
+                      01116 ;   r0x1008
+                      01117 ;   STK01
+                      01118 ;   r0x1009
+                      01119 ;; Starting pCode block
+                      01120 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01121 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01122 ;; ***  genLabel  2763
+                      01123 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01124 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      01125 ;; ***  genFunction  2342 curr label offset=4previous max_key=0 
+00B8                  01126 _LCD_SendChar   ;Function start
+                      01127 ; 2 exit points
+                      01128 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01129 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      01130 ;; ***  genReceive  7359
+                      01131 ;;      694 register type nRegs=1
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 23
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01132 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      01133 ;; ***  assignResultValue  1909
+                      01134 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x1049, size=1, right -=-, size=0
+                      01135 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      01136 ;;      1109 rIdx = r0x1049 
+                      01137         .line   83; "LCD.c"     void LCD_SendChar(tByte character, tByte line, tByte column)
+00B8   ???? ????      01138         BANKSEL r0x1007
+00BA   00??           01139         MOVWF   r0x1007
+                      01140 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01141 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      01142 ;; ***  genReceive  7359
+                      01143 ;;      694 register type nRegs=1
+                      01144 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      01145 ;; ***  assignResultValue  1909
+                      01146 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x104A, size=1, right -=-, size=0
+                      01147 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      01148 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+00BB   08??           01149         MOVF    STK00,W
+                      01150 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      01151 ;;      1109 rIdx = r0x104A 
+00BC   00??           01152         MOVWF   r0x1008
+                      01153 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01154 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7358:genReceive *{*
+                      01155 ;; ***  genReceive  7359
+                      01156 ;;      694 register type nRegs=1
+                      01157 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1907:assignResultValue *{*
+                      01158 ;; ***  assignResultValue  1909
+                      01159 ;;      line = 1911 result -=-, size=0, left AOP_REG=r0x104B, size=1, right -=-, size=0
+                      01160 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1423:get_returnvalue
+                      01161 ;; ***  popRegFromIdx,1042  , rIdx=0x7e
+00BD   08??           01162         MOVF    STK01,W
+                      01163 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1393:movwf
+                      01164 ;;      1109 rIdx = r0x104B 
+                      01165 ;;1     MOVWF   r0x1009
+                      01166         .line   87; "LCD.c"     LCD_GoTo(line, column);
+00BE   00??           01167         MOVWF   STK00
+                      01168 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01169 ;; ***  mov2w  1381  offset=0
+                      01170 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      01171 ;;      1109 rIdx = r0x104A 
+00BF   08??           01172         MOVF    r0x1008,W
+                      01173 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00C0   2???           01174         CALL    _LCD_GoTo
+                      01175 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01176 ;; ***  unsaveRegisters  1847
+                      01177 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01178 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01179 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01180 ;; ***  genCall  2088
+                      01181 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01182 ;; ***  saveRegisters  1803
+                      01183 ;;      694 register type nRegs=1
+                      01184 ;;      694 register type nRegs=1
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 24
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01185 ;;      2135 left AOP_REG
+                      01186 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01187 ;; ***  mov2w  1381  offset=0
+                      01188 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1386:mov2w
+                      01189 ;;      1109 rIdx = r0x1049 
+                      01190         .line   88; "LCD.c"     LCD_SendData(character);
+00C1   ???? ????      01191         BANKSEL r0x1007
+00C3   08??           01192         MOVF    r0x1007,W
+                      01193 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00C4   2???           01194         CALL    _LCD_SendData
+                      01195 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01196 ;; ***  unsaveRegisters  1847
+                      01197 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01198 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01199 ;; ***  genLabel  2763
+                      01200 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01201 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      01202 ;; ***  genEndFunction  2530
+00C5   0008           01203         RETURN  
+                      01204 ; exit point of _LCD_SendChar
+                      01205 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      01206 
+                      01207 ;***
+                      01208 ;  pBlock Stats: dbName = C
+                      01209 ;***
+                      01210 ;entry:  _LCD_Init      ;Function start
+                      01211 ; 2 exit points
+                      01212 ;has an exit
+                      01213 ;functions called:
+                      01214 ;   _Delay_MS
+                      01215 ;   _LCD_SendCommand
+                      01216 ;   _Delay_MS
+                      01217 ;   _LCD_SendCommand
+                      01218 ;   _Delay_MS
+                      01219 ;   _LCD_SendCommand
+                      01220 ;   _LCD_SendCommand
+                      01221 ;   _LCD_SendCommand
+                      01222 ;   _LCD_SendCommand
+                      01223 ;   _LCD_SendCommand
+                      01224 ;   _LCD_SendCommand
+                      01225 ;   _Delay_MS
+                      01226 ;   _LCD_SendCommand
+                      01227 ;   _Delay_MS
+                      01228 ;   _LCD_SendCommand
+                      01229 ;   _Delay_MS
+                      01230 ;   _LCD_SendCommand
+                      01231 ;   _LCD_SendCommand
+                      01232 ;   _LCD_SendCommand
+                      01233 ;   _LCD_SendCommand
+                      01234 ;   _LCD_SendCommand
+                      01235 ;   _LCD_SendCommand
+                      01236 ;2 compiler assigned registers:
+                      01237 ;   r0x1013
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 25
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01238 ;   STK00
+                      01239 ;; Starting pCode block
+                      01240 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01241 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01242 ;; ***  genLabel  2763
+                      01243 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01244 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2340:genFunction *{*
+                      01245 ;; ***  genFunction  2342 curr label offset=0previous max_key=0 
+00C6                  01246 _LCD_Init       ;Function start
+                      01247 ; 2 exit points
+                      01248 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01249 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6927:genAssign *{*
+                      01250 ;; ***  genAssign  6928
+                      01251 ;; ***  aopForSym 315
+                      01252 ;;      327 sym->rname = _TRISD, size = 1
+                      01253 ;;      line = 6937 result AOP_DIR=_TRISD, size=1, left -=-, size=0, right AOP_LIT=0x00, size=1
+                      01254 ;; ***  genAssign  7023
+                      01255 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7035:genAssign
+                      01256 ;;      1009
+                      01257 ;;      1028  _TRISD   offset=0
+                      01258         .line   54; "LCD.c"     GPIO_InitPort(LCD_DATA_PORT_CR, GPIO_OUT);
+00C6   ???? ????      01259         BANKSEL _TRISD
+00C8   01??           01260         CLRF    _TRISD
+                      01261 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01262 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:6927:genAssign *{*
+                      01263 ;; ***  genAssign  6928
+                      01264 ;; ***  aopForSym 315
+                      01265 ;;      327 sym->rname = _PORTD, size = 1
+                      01266 ;;      line = 6937 result AOP_DIR=_PORTD, size=1, left -=-, size=0, right AOP_LIT=0x00, size=1
+                      01267 ;; ***  genAssign  7023
+                      01268 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7035:genAssign
+                      01269 ;;      1009
+                      01270 ;;      1028  _PORTD   offset=0
+                      01271         .line   55; "LCD.c"     GPIO_WritePort(LCD_DATA_PORT_DR, 0);
+00C9   ???? ????      01272         BANKSEL _PORTD
+00CB   01??           01273         CLRF    _PORTD
+                      01274 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01275 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      01276 ;; ***  genCast  7121
+                      01277 ;; ***  aopForSym 315
+                      01278 ;;      327 sym->rname = _TRISE, size = 1
+                      01279 ;;      694 register type nRegs=1
+                      01280 ;;      line = 7129 result AOP_REG=r0x1048, size=1, left -=-, size=0, right AOP_DIR=_TRISE, size=1
+                      01281 ;; ***  genCast  7253
+                      01282 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      01283 ;;      1009
+                      01284 ;;      1028  _TRISE   offset=0
+                      01285         .line   56; "LCD.c"     GPIO_InitPortPin(LCD_RS_CR, LCD_RS_PIN, GPIO_OUT);
+00CC   ???? ????      01286         BANKSEL _TRISE
+00CE   08??           01287         MOVF    _TRISE,W
+                      01288 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      01289 ;;      1109 rIdx = r0x1048 
+00CF   ???? ????      01290         BANKSEL r0x1013
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 26
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00D1   00??           01291         MOVWF   r0x1013
+                      01292 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01293 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      01294 ;; ***  genAnd  3920
+                      01295 ;;      694 register type nRegs=1
+                      01296 ;; ***  aopForSym 315
+                      01297 ;;      327 sym->rname = _TRISE, size = 1
+                      01298 ;;      line = 3955 result AOP_DIR=_TRISE, size=1, left AOP_REG=r0x1048, size=1, right AOP_LIT=0xfb, siz
+                            e=1
+                      01299 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+00D2   30FB           01300         MOVLW   0xfb
+                      01301 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      01302 ;;      1109 rIdx = r0x1048 
+00D3   05??           01303         ANDWF   r0x1013,W
+                      01304 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      01305 ;;      1009
+                      01306 ;;      1028  _TRISE   offset=0
+00D4   ???? ????      01307         BANKSEL _TRISE
+00D6   00??           01308         MOVWF   _TRISE
+                      01309 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01310 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      01311 ;; ***  genCast  7121
+                      01312 ;; ***  aopForSym 315
+                      01313 ;;      327 sym->rname = _TRISE, size = 1
+                      01314 ;;      694 register type nRegs=1
+                      01315 ;;      line = 7129 result AOP_REG=r0x1048, size=1, left -=-, size=0, right AOP_DIR=_TRISE, size=1
+                      01316 ;; ***  genCast  7253
+                      01317 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      01318 ;;      1009
+                      01319 ;;      1028  _TRISE   offset=0
+                      01320         .line   57; "LCD.c"     GPIO_InitPortPin(LCD_E_CR, LCD_E_PIN, GPIO_OUT);
+00D7   08??           01321         MOVF    _TRISE,W
+                      01322 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      01323 ;;      1109 rIdx = r0x1048 
+00D8   ???? ????      01324         BANKSEL r0x1013
+00DA   00??           01325         MOVWF   r0x1013
+                      01326 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01327 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      01328 ;; ***  genAnd  3920
+                      01329 ;;      694 register type nRegs=1
+                      01330 ;; ***  aopForSym 315
+                      01331 ;;      327 sym->rname = _TRISE, size = 1
+                      01332 ;;      line = 3955 result AOP_DIR=_TRISE, size=1, left AOP_REG=r0x1048, size=1, right AOP_LIT=0xfd, siz
+                            e=1
+                      01333 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+00DB   30FD           01334         MOVLW   0xfd
+                      01335 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      01336 ;;      1109 rIdx = r0x1048 
+00DC   05??           01337         ANDWF   r0x1013,W
+                      01338 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      01339 ;;      1009
+                      01340 ;;      1028  _TRISE   offset=0
+00DD   ???? ????      01341         BANKSEL _TRISE
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 27
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00DF   00??           01342         MOVWF   _TRISE
+                      01343 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01344 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      01345 ;; ***  genCast  7121
+                      01346 ;; ***  aopForSym 315
+                      01347 ;;      327 sym->rname = _PORTE, size = 1
+                      01348 ;;      694 register type nRegs=1
+                      01349 ;;      line = 7129 result AOP_REG=r0x1048, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      01350 ;; ***  genCast  7253
+                      01351 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      01352 ;;      1009
+                      01353 ;;      1028  _PORTE   offset=0
+                      01354         .line   58; "LCD.c"     GPIO_WritePortPin(LCD_RS_DR, LCD_RS_PIN, 0);
+00E0   ???? ????      01355         BANKSEL _PORTE
+00E2   08??           01356         MOVF    _PORTE,W
+                      01357 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      01358 ;;      1109 rIdx = r0x1048 
+00E3   ???? ????      01359         BANKSEL r0x1013
+00E5   00??           01360         MOVWF   r0x1013
+                      01361 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01362 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      01363 ;; ***  genAnd  3920
+                      01364 ;;      694 register type nRegs=1
+                      01365 ;; ***  aopForSym 315
+                      01366 ;;      327 sym->rname = _PORTE, size = 1
+                      01367 ;;      line = 3955 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1048, size=1, right AOP_LIT=0xfb, siz
+                            e=1
+                      01368 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+00E6   30FB           01369         MOVLW   0xfb
+                      01370 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      01371 ;;      1109 rIdx = r0x1048 
+00E7   05??           01372         ANDWF   r0x1013,W
+                      01373 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      01374 ;;      1009
+                      01375 ;;      1028  _PORTE   offset=0
+00E8   ???? ????      01376         BANKSEL _PORTE
+00EA   00??           01377         MOVWF   _PORTE
+                      01378 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01379 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7120:genCast *{*
+                      01380 ;; ***  genCast  7121
+                      01381 ;; ***  aopForSym 315
+                      01382 ;;      327 sym->rname = _PORTE, size = 1
+                      01383 ;;      694 register type nRegs=1
+                      01384 ;;      line = 7129 result AOP_REG=r0x1048, size=1, left -=-, size=0, right AOP_DIR=_PORTE, size=1
+                      01385 ;; ***  genCast  7253
+                      01386 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7277:genCast
+                      01387 ;;      1009
+                      01388 ;;      1028  _PORTE   offset=0
+                      01389         .line   59; "LCD.c"     GPIO_WritePortPin(LCD_E_DR, LCD_E_PIN, 0);
+00EB   08??           01390         MOVF    _PORTE,W
+                      01391 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7278:genCast
+                      01392 ;;      1109 rIdx = r0x1048 
+00EC   ???? ????      01393         BANKSEL r0x1013
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 28
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+00EE   00??           01394         MOVWF   r0x1013
+                      01395 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01396 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:3919:genAnd *{*
+                      01397 ;; ***  genAnd  3920
+                      01398 ;;      694 register type nRegs=1
+                      01399 ;; ***  aopForSym 315
+                      01400 ;;      327 sym->rname = _PORTE, size = 1
+                      01401 ;;      line = 3955 result AOP_DIR=_PORTE, size=1, left AOP_REG=r0x1048, size=1, right AOP_LIT=0xfd, siz
+                            e=1
+                      01402 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4190:genAnd
+00EF   30FD           01403         MOVLW   0xfd
+                      01404 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4191:genAnd
+                      01405 ;;      1109 rIdx = r0x1048 
+00F0   05??           01406         ANDWF   r0x1013,W
+                      01407 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:4192:genAnd
+                      01408 ;;      1009
+                      01409 ;;      1028  _PORTE   offset=0
+00F1   ???? ????      01410         BANKSEL _PORTE
+00F3   00??           01411         MOVWF   _PORTE
+                      01412 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01413 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01414 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01415 ;; ***  genCall  2088
+                      01416 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01417 ;; ***  saveRegisters  1803
+                      01418 ;;      2135 left AOP_LIT
+                      01419 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01420 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01421         .line   62; "LCD.c"     Delay_MS(20);
+00F4   3014           01422         MOVLW   0x14
+                      01423 ;;      2135 left AOP_LIT
+                      01424 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2143:genCall
+                      01425 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+00F5   00??           01426         MOVWF   STK00
+                      01427 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01428 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+00F6   3000           01429         MOVLW   0x00
+                      01430 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2173:genCall
+00F7   ???? ????      01431         PAGESEL _Delay_MS
+                      01432 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00F9   2???           01433         CALL    _Delay_MS
+                      01434 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2181:genCall
+00FA   ???? ????      01435         PAGESEL $
+                      01436 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01437 ;; ***  unsaveRegisters  1847
+                      01438 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01439 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01440 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01441 ;; ***  genCall  2088
+                      01442 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01443 ;; ***  saveRegisters  1803
+                      01444 ;;      2135 left AOP_LIT
+                      01445 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 29
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01446 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01447         .line   63; "LCD.c"     LCD_SendCommand(LCD_CONFIG_WORD);
+00FC   3030           01448         MOVLW   0x30
+                      01449 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+00FD   2???           01450         CALL    _LCD_SendCommand
+                      01451 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01452 ;; ***  unsaveRegisters  1847
+                      01453 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01454 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01455 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01456 ;; ***  genCall  2088
+                      01457 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01458 ;; ***  saveRegisters  1803
+                      01459 ;;      2135 left AOP_LIT
+                      01460 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01461 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01462         .line   64; "LCD.c"     Delay_MS(5);
+00FE   3005           01463         MOVLW   0x05
+                      01464 ;;      2135 left AOP_LIT
+                      01465 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2143:genCall
+                      01466 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+00FF   00??           01467         MOVWF   STK00
+                      01468 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01469 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+0100   3000           01470         MOVLW   0x00
+                      01471 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2173:genCall
+0101   ???? ????      01472         PAGESEL _Delay_MS
+                      01473 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0103   2???           01474         CALL    _Delay_MS
+                      01475 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2181:genCall
+0104   ???? ????      01476         PAGESEL $
+                      01477 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01478 ;; ***  unsaveRegisters  1847
+                      01479 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01480 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01481 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01482 ;; ***  genCall  2088
+                      01483 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01484 ;; ***  saveRegisters  1803
+                      01485 ;;      2135 left AOP_LIT
+                      01486 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01487 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01488         .line   65; "LCD.c"     LCD_SendCommand(LCD_CONFIG_WORD);
+0106   3030           01489         MOVLW   0x30
+                      01490 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0107   2???           01491         CALL    _LCD_SendCommand
+                      01492 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01493 ;; ***  unsaveRegisters  1847
+                      01494 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01495 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01496 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01497 ;; ***  genCall  2088
+                      01498 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 30
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01499 ;; ***  saveRegisters  1803
+                      01500 ;;      2135 left AOP_LIT
+                      01501 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01502 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01503         .line   66; "LCD.c"     Delay_MS(1);
+0108   3001           01504         MOVLW   0x01
+                      01505 ;;      2135 left AOP_LIT
+                      01506 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2143:genCall
+                      01507 ;; ***  popRegFromIdx,1042  , rIdx=0x7f
+0109   00??           01508         MOVWF   STK00
+                      01509 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01510 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+010A   3000           01511         MOVLW   0x00
+                      01512 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2173:genCall
+010B   ???? ????      01513         PAGESEL _Delay_MS
+                      01514 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+010D   2???           01515         CALL    _Delay_MS
+                      01516 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2181:genCall
+010E   ???? ????      01517         PAGESEL $
+                      01518 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01519 ;; ***  unsaveRegisters  1847
+                      01520 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01521 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01522 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01523 ;; ***  genCall  2088
+                      01524 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01525 ;; ***  saveRegisters  1803
+                      01526 ;;      2135 left AOP_LIT
+                      01527 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01528 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01529         .line   67; "LCD.c"     LCD_SendCommand(LCD_CONFIG_WORD);
+0110   3030           01530         MOVLW   0x30
+                      01531 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0111   2???           01532         CALL    _LCD_SendCommand
+                      01533 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01534 ;; ***  unsaveRegisters  1847
+                      01535 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01536 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01537 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01538 ;; ***  genCall  2088
+                      01539 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01540 ;; ***  saveRegisters  1803
+                      01541 ;;      2135 left AOP_LIT
+                      01542 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01543 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01544         .line   71; "LCD.c"     LCD_SendCommand(LCD_FUNCTION_SET|LCD_DATA_LENGTH_8|LCD_TWO_LINES|LCD_SMA
+                            LL_FONT);
+0112   3038           01545         MOVLW   0x38
+                      01546 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0113   2???           01547         CALL    _LCD_SendCommand
+                      01548 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01549 ;; ***  unsaveRegisters  1847
+                      01550 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 31
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01551 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01552 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01553 ;; ***  genCall  2088
+                      01554 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01555 ;; ***  saveRegisters  1803
+                      01556 ;;      2135 left AOP_LIT
+                      01557 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01558 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01559         .line   73; "LCD.c"     LCD_SendCommand(LCD_DISPLAY_CONTROL|LCD_DISPLAY_OFF|LCD_CURSOR_OFF|LCD_C
+                            URSOR_BLINK_OFF);
+0114   3008           01560         MOVLW   0x08
+                      01561 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0115   2???           01562         CALL    _LCD_SendCommand
+                      01563 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01564 ;; ***  unsaveRegisters  1847
+                      01565 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01566 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01567 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01568 ;; ***  genCall  2088
+                      01569 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01570 ;; ***  saveRegisters  1803
+                      01571 ;;      2135 left AOP_LIT
+                      01572 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01573 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01574         .line   75; "LCD.c"     LCD_SendCommand(LCD_CLR);
+0116   3001           01575         MOVLW   0x01
+                      01576 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0117   2???           01577         CALL    _LCD_SendCommand
+                      01578 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01579 ;; ***  unsaveRegisters  1847
+                      01580 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01581 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01582 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01583 ;; ***  genCall  2088
+                      01584 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01585 ;; ***  saveRegisters  1803
+                      01586 ;;      2135 left AOP_LIT
+                      01587 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01588 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01589         .line   77; "LCD.c"     LCD_SendCommand(LCD_SET_ENTRY_MODE|LCD_INCREMENT_CURSOR|LCD_DISPLAY_SHIF
+                            T_OFF);
+0118   3042           01590         MOVLW   0x42
+                      01591 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+0119   2???           01592         CALL    _LCD_SendCommand
+                      01593 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01594 ;; ***  unsaveRegisters  1847
+                      01595 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01596 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01597 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2086:genCall *{*
+                      01598 ;; ***  genCall  2088
+                      01599 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1801:saveRegisters *{*
+                      01600 ;; ***  saveRegisters  1803
+                      01601 ;;      2135 left AOP_LIT
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 32
+
+
+LOC    OBJECT CODE    LINE  SOURCE TEXT
+  VALUE
+
+                      01602 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1343:mov2w_op *{*
+                      01603 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1361:mov2w_op
+                      01604         .line   79; "LCD.c"     LCD_SendCommand(LCD_DISPLAY_CONTROL|LCD_DISPLAY_ON|LCD_CURSOR_OFF|LCD_CU
+                            RSOR_BLINK_OFF);
+011A   300C           01605         MOVLW   0x0c
+                      01606 ;; >>> /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2175:genCall
+011B   2???           01607         CALL    _LCD_SendCommand
+                      01608 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:1845:unsaveRegisters *{*
+                      01609 ;; ***  unsaveRegisters  1847
+                      01610 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01611 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2760:genLabel *{*
+                      01612 ;; ***  genLabel  2763
+                      01613 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2316:resultRemat *{*
+                      01614 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:2528:genEndFunction *{*
+                      01615 ;; ***  genEndFunction  2530
+011C   0008           01616         RETURN  
+                      01617 ; exit point of _LCD_Init
+                      01618 ;;; /home/sdcc-builder/build/sdcc-build/orig/sdcc/src/pic14/gen.c:7426:genpic14Code *{*
+                      01619 
+                      01620 
+                      01621 ;       code size estimation:
+                      01622 ;         175+   55 =   230 instructions (  570 byte)
+                      01623 
+                      01624         end
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 33
+
+
+SYMBOL TABLE
+  LABEL                             VALUE
+
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ADCON0                            0000001F
+ADCON1                            0000009F
+ADCS0                             00000006
+ADCS1                             00000007
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADON                              00000000
+ADRESH                            0000001E
+ADRESL                            0000009E
+BCLIE                             00000003
+BCLIF                             00000003
+BF                                00000000
+BRGH                              00000002
+C                                 00000000
+C1INV                             00000004
+C1OUT                             00000006
+C2INV                             00000005
+C2OUT                             00000007
+CCP1CON                           00000017
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1X                             00000005
+CCP1Y                             00000004
+CCP2CON                           0000001D
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2X                             00000005
+CCP2Y                             00000004
+CCPR1                             00000015
+CCPR1H                            00000016
+CCPR1L                            00000015
+CCPR2                             0000001B
+CCPR2H                            0000001C
+CCPR2L                            0000001B
+CHS0                              00000003
+CHS1                              00000004
+CHS2                              00000005
+CIS                               00000003
+CKE                               00000006
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 34
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CKP                               00000004
+CM0                               00000000
+CM1                               00000001
+CM2                               00000002
+CMCON                             0000009C
+CMIE                              00000006
+CMIF                              00000006
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            0000009D
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+D                                 00000005
+DATA_ADDRESS                      00000005
+DC                                00000001
+D_A                               00000005
+D_NOT_A                           00000005
+EEADR                             0000010D
+EEADRH                            0000010F
+EECON1                            0000018C
+EECON2                            0000018D
+EEDATA                            0000010C
+EEDATH                            0000010E
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FSR                               00000004
+GCEN                              00000007
+GIE                               00000007
+GO                                00000002
+GO_DONE                           00000002
+GO_NOT_DONE                       00000002
+I2C_DATA                          00000005
+I2C_READ                          00000002
+I2C_START                         00000003
+I2C_STOP                          00000004
+IBF                               00000007
+IBOV                              00000005
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 35
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_BO                            00000000
+NOT_BOR                           00000000
+NOT_DONE                          00000002
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RC8                           00000006
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+NOT_TX8                           00000006
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OBF                               00000006
+OERR                              00000001
+OPTION_REG                        00000081
+P                                 00000004
+PCFG0                             00000000
+PCFG1                             00000001
+PCFG2                             00000002
+PCFG3                             00000003
+PCL                               00000002
+PCLATH                            0000000A
+PCON                              0000008E
+PEIE                              00000006
+PEN                               00000002
+PIE1                              0000008C
+PIE2                              0000008D
+PIR1                              0000000C
+PIR2                              0000000D
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+PORTD                             00000008
+PORTE                             00000009
+PR2                               00000092
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSAVE                             00000000
+PSPIE                             00000007
+PSPIF                             00000007
+PSPMODE                           00000004
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 36
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RC8_9                             00000006
+RC9                               00000006
+RCD8                              00000000
+RCEN                              00000003
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             0000001A
+RCSTA                             00000018
+RD                                00000000
+RD0                               00000000
+RD1                               00000001
+RD2                               00000002
+RD3                               00000003
+RD4                               00000004
+RD5                               00000005
+RD6                               00000006
+RD7                               00000007
+RE0                               00000000
+RE1                               00000001
+RE2                               00000002
+READ_WRITE                        00000002
+RP0                               00000005
+RP1                               00000006
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SEN                               00000000
+SMP                               00000007
+SPBRG                             00000099
+SPEN                              00000007
+SREN                              00000005
+SSAVE                             00000000
+SSPADD                            00000093
+SSPBUF                            00000013
+SSPCON                            00000014
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 37
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPCON2                           00000091
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPOV                             00000006
+SSPSTAT                           00000094
+STATUS                            00000003
+STK00                             00000000
+STK01                             00000000
+STK02                             00000000
+STK03                             00000000
+STK04                             00000000
+STK05                             00000000
+STK06                             00000000
+STK07                             00000000
+STK08                             00000000
+STK09                             00000000
+STK10                             00000000
+STK11                             00000000
+STK12                             00000000
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000010
+T1INSYNC                          00000002
+T1OSCEN                           00000003
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000012
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR1                              0000000E
+TMR1CS                            00000001
+TMR1H                             0000000F
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             0000000E
+TMR1ON                            00000000
+TMR2                              00000011
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TOUTPS0                           00000003
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 38
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TOUTPS1                           00000004
+TOUTPS2                           00000005
+TOUTPS3                           00000006
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000087
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRISD                             00000088
+TRISD0                            00000000
+TRISD1                            00000001
+TRISD2                            00000002
+TRISD3                            00000003
+TRISD4                            00000004
+TRISD5                            00000005
+TRISD6                            00000006
+TRISD7                            00000007
+TRISE                             00000089
+TRISE0                            00000000
+TRISE1                            00000001
+TRISE2                            00000002
+TRMT                              00000001
+TX8_9                             00000006
+TX9                               00000006
+TX9D                              00000000
+TXD8                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             00000019
+TXSTA                             00000098
+UA                                00000001
+W                                 00000000
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 39
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WCOL                              00000007
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+WSAVE                             00000000
+Z                                 00000002
+_00119_DS_                        0000008D
+_00122_DS_                        000000B4
+_00126_DS_                        0000008A
+_ADCON0                           00000000
+_ADCON0bits                       00000000
+_ADCON1                           00000000
+_ADCON1bits                       00000000
+_ADRESH                           00000000
+_ADRESL                           00000000
+_BODEN_OFF                        00003FBF
+_BODEN_ON                         00003FFF
+_BOREN_OFF                        00003FBF
+_BOREN_ON                         00003FFF
+_CCP1CON                          00000000
+_CCP1CONbits                      00000000
+_CCP2CON                          00000000
+_CCP2CONbits                      00000000
+_CCPR1                            00000000
+_CCPR1H                           00000000
+_CCPR1L                           00000000
+_CCPR2                            00000000
+_CCPR2H                           00000000
+_CCPR2L                           00000000
+_CMCON                            00000000
+_CMCONbits                        00000000
+_CONFIG                           00002007
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_ALL                           00001FFF
+_CP_OFF                           00003FFF
+_CP_ON                            00001FFF
+_CVRCON                           00000000
+_CVRCONbits                       00000000
+_DEBUG_OFF                        00003FFF
+_DEBUG_ON                         000037FF
+_DEVID1                           00002006
+_Delay_MS                         00000000
+_EEADR                            00000000
+_EEADRH                           00000000
+_EECON1                           00000000
+_EECON1bits                       00000000
+_EECON2                           00000000
+_EEDATA                           00000000
+_EEDATH                           00000000
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 40
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_FOSC_XT                          00003FFD
+_FSR                              00000000
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_INDF                             00000000
+_INTCON                           00000000
+_INTCONbits                       00000000
+_LCD_Clear                        000000B5
+_LCD_GoTo                         00000000
+_LCD_Init                         000000C6
+_LCD_SendChar                     000000B8
+_LCD_SendCommand                  0000004A
+_LCD_SendData                     00000017
+_LCD_SendString                   0000007C
+_LP_OSC                           00003FFC
+_LVP_OFF                          00003F7F
+_LVP_ON                           00003FFF
+_OPTION_REG                       00000000
+_OPTION_REGbits                   00000000
+_PCL                              00000000
+_PCLATH                           00000000
+_PCON                             00000000
+_PCONbits                         00000000
+_PIE1                             00000000
+_PIE1bits                         00000000
+_PIE2                             00000000
+_PIE2bits                         00000000
+_PIR1                             00000000
+_PIR1bits                         00000000
+_PIR2                             00000000
+_PIR2bits                         00000000
+_PORTA                            00000000
+_PORTAbits                        00000000
+_PORTB                            00000000
+_PORTBbits                        00000000
+_PORTC                            00000000
+_PORTCbits                        00000000
+_PORTD                            00000000
+_PORTDbits                        00000000
+_PORTE                            00000000
+_PORTEbits                        00000000
+_PR2                              00000000
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RCREG                            00000000
+_RCSTA                            00000000
+_RCSTAbits                        00000000
+_RC_OSC                           00003FFF
+_SPBRG                            00000000
+_SSPADD                           00000000
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 41
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_SSPBUF                           00000000
+_SSPCON                           00000000
+_SSPCON2                          00000000
+_SSPCON2bits                      00000000
+_SSPCONbits                       00000000
+_SSPSTAT                          00000000
+_SSPSTATbits                      00000000
+_STATUS                           00000000
+_STATUSbits                       00000000
+_T1CON                            00000000
+_T1CONbits                        00000000
+_T2CON                            00000000
+_T2CONbits                        00000000
+_TMR0                             00000000
+_TMR1                             00000000
+_TMR1H                            00000000
+_TMR1L                            00000000
+_TMR2                             00000000
+_TRISA                            00000000
+_TRISAbits                        00000000
+_TRISB                            00000000
+_TRISBbits                        00000000
+_TRISC                            00000000
+_TRISCbits                        00000000
+_TRISD                            00000000
+_TRISDbits                        00000000
+_TRISE                            00000000
+_TRISEbits                        00000000
+_TXREG                            00000000
+_TXSTA                            00000000
+_TXSTAbits                        00000000
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_WRT_1FOURTH                      00003BFF
+_WRT_256                          00003DFF
+_WRT_HALF                         000039FF
+_WRT_OFF                          00003FFF
+_XT_OSC                           00003FFD
+__16F877A                         00000001
+__CODE_END                        00001FFF
+__CODE_START                      00000000
+__COMMON_RAM_END                  0000007F
+__COMMON_RAM_START                00000070
+__EEPROM_END                      000021FF
+__EEPROM_START                    00002100
+__VECTOR_INT                      00000004
+__VECTOR_RESET                    00000000
+__gptrget1                        00000000
+__itoa                            00000000
+__ltoa                            00000000
+__mulchar                         00000000
+gpasm-1.4.0 #1106 (Oct  6 2014) obj\Debug\LCD   7-4-2020  14:18:02          PAGE 42
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__print_format                    00000000
+__uitoa                           00000000
+__ultoa                           00000000
+_abs                              00000000
+_atof                             00000000
+_atoi                             00000000
+_atol                             00000000
+_calloc                           00000000
+_code_LCD_000B                    0000000B
+_code_LCD_00A2                    000000A2
+_code_LCD_00FA                    000000FA
+_code_LCD_0104                    00000104
+_code_LCD_010E                    0000010E
+_free                             00000000
+_getchar                          00000000
+_gets                             00000000
+_labs                             00000000
+_malloc                           00000000
+_printf                           00000000
+_printf_small                     00000000
+_putchar                          00000000
+_puts                             00000000
+_rand                             00000000
+_realloc                          00000000
+_sprintf                          00000000
+_srand                            00000000
+_vprintf                          00000000
+_vsprintf                         00000000
+r0x1000                           0000000C
+r0x1001                           0000000D
+r0x1002                           00000010
+r0x1003                           00000011
+r0x1004                           00000012
+r0x1005                           0000000E
+r0x1006                           0000000F
+r0x1007                           00000001
+r0x1008                           00000002
+r0x100A                           00000003
+r0x100B                           00000006
+r0x100C                           00000005
+r0x100D                           00000004
+r0x100E                           00000007
+r0x100F                           00000008
+r0x1010                           00000009
+r0x1011                           0000000A
+r0x1012                           0000000B
+r0x1013                           00000000
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
